@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زياد | البوابة الأمنية والذكاء السيبراني</title>
+    <style>
+        :root {
+            --bg-color: #030305;
+            --card-bg: rgba(10, 14, 23, 0.85);
+            --neon-green: #00ff66;
+            --neon-cyan: #00f3ff;
+            --neon-purple: #b000ff;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(176, 0, 255, 0.1) 0%, transparent 45%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 243, 255, 0.15);
+            backdrop-filter: blur(15px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* خط إضاءة متحرك علوي */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan), var(--neon-green));
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--neon-cyan);
+            border: 1px solid rgba(0, 243, 255, 0.4);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        h1 span {
+            color: var(--neon-green);
+            text-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+        }
+
+        .subtitle {
+            color: var(--neon-cyan);
+            font-size: 15px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        /* شبكة الإحصائيات والمميزات */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 15px 10px;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .stat-box:hover {
+            border-color: var(--neon-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.2);
+        }
+
+        .stat-num {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--neon-cyan);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* أزرار التحكم والتفاعل */
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--neon-cyan), #0066ff);
+            color: #030305;
+            border: none;
+            padding: 13px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 243, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 243, 255, 0.5);
+            background: linear-gradient(135deg, #fff, var(--neon-cyan));
+        }
+
+        .btn-alt {
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            box-shadow: none;
+        }
+
+        .btn-alt:hover {
+            background: rgba(0, 255, 102, 0.12);
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+            color: var(--neon-green);
+        }
+
+        /* نافذة مخرجات النظام الذكية */
+        #console-log {
+            margin-top: 25px;
+            background: #010409;
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: var(--neon-green);
+            text-align: right;
+            display: none;
+            box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.1);
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #484f58;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="badge">SECURE_NODE // v3.0 PRO</div>
+        <h1>الموقع الرسمي لـ <span>زياد</span></h1>
+        <div class="subtitle">طالب أمن سيبراني ومطور واجهات رقمية</div>
+        
+        <p>تم تصميم هذا النظام الرقمي بأعلى معايير الأداء والتصميم الحديث (Cyberpunk). منصة متكاملة لعرض المهارات والمشاريع البرمجية باحترافية تامة.</p>
+        
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">أمان وحماية</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">HTML/CSS</div>
+                <div class="stat-label">هندسة الويب</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-num">ONLINE</div>
+                <div class="stat-label">حالة السيرفر</div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn" onclick="runCyberScan()">فحص النظام الأمني</button>
+            <button class="btn btn-alt" onclick="showDevInfo()">بطاقة المطور</button>
+        </div>
+
+        <div id="console-log"></div>
+        
+        <div class="footer">DESIGNED BY ZIAD © 2026</div>
+    </div>
+
+    <script>
+        function runCyberScan() {
+            const logBox = document.getElementById('console-log');
+            logBox.style.display = 'block';
+            logBox.innerHTML = '[+] جاري الاتصال بالبروتوكول الآمن...<br>[+] تم فحص الثغرات (0 ثغرات مكتشفة).<br>[✓] جدار الحماية يعمل بكفاءة قصوى 100%.';
+        }
+
+        function showDevInfo() {
+            alert('المبرمج: زياد\nالتخصص: أمن سيبراني وتطوير ويب\nالهدف: بناء مستقبل تقني واعد واستثنائي 🚀');
+        }
+    </script>
+</body>
+</html>
